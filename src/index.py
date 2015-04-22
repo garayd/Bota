@@ -6,7 +6,17 @@ from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
 
 
-DATA = "../data/cellartracker.txt"
+DATA = "../data/data.txt"
+
+
+def name_index(index, lines):
+    wine_id = lines[1][13:][:-1]
+    wine_name = lines[0][11:][:-1]
+
+    if wine_id not in index:
+        index[wine_id] = []
+
+    index[wine_id].append(wine_name)
 
 
 def wine_index(index, lines):
