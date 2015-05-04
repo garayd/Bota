@@ -16,7 +16,7 @@ def search():
     if request.method == 'POST':
         query_string = request.form.get("query_string")
         user = request.form.get("user", None)
-        ngram = request.form.get("ngram", 0)
+        expansion = request.form.get("expansion", 0)
         sort = []
         if request.form.get("overall"):
             sort.append("overall")
@@ -29,12 +29,12 @@ def search():
         if request.form.get("aroma"):
             sort.append("aroma")
         
-        print_debug = query_string + " " + str(user) + " " + str(ngram) + " " + str(sort) 
+        print_debug = query_string + " " + str(user) + " " + str(expansion) + " " + str(sort) 
         
         page_title = query_string + " - " + APP_NAME + " Search"
 
-        query_result = {'beer':[]}
-        # query_result = query(query_string, sort_by=sort_by, user=user, expansion=ngram)
+        query_result = {'list':[]}
+        # query_result = query(query_string, sort_by=sort_by, user=user, expansion=expansion)
         if 'list' in query_result:
             # beers_tuples = query_result['list']
             # dummy search results
