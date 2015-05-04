@@ -1,0 +1,18 @@
+{% extends "index.html" %}
+
+{% block search_results %}
+</br>
+
+<ol class="beer-list">
+	{% for beer in beers: %}
+	<li class="no-numbers">
+		<p>
+			<a href={{url_for('search', beer_name=beer.get('name'))}}>
+			{{ beer.get("name") }}
+			</a>
+			{{ beer.get("score") }}
+		</p>
+	</li>
+	{% endfor %}
+</ol>
+{% endblock %}

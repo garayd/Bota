@@ -1,0 +1,48 @@
+{% extends "base_layout.html" %}
+{% block content %}
+<div class="text-center search-form">
+    <form class="form-inline" action={{url_for('search')}} method=post>
+        <div class="row">
+            <input type=text class="form-control" placeholder="Search beers" name="query_string" value={{request.form.query_string}}>
+            <button type="submit" class="btn btn-primary">Go</button>
+        </div>
+        </br>
+        <div class="row">
+            <b>Advanced Search: </b>
+            <div class="form-group form-group-sm">
+                <label for="user">User:</label>
+                <input type="text" class="form-control input-sm" name="user" id="user" value={{request.form.user}}>
+            </div>
+            <div class="form-group form-group-sm">
+                <label for="expansion">Expansion:</label>
+                <input type="number" class="form-control input-sm" placeholder=0 name="expansion" id="expansion" value={{request.form.expansion}}>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <b>Sort by: </b>
+                <label class="checkbox-inline">  
+                    <input type="checkbox" name="overall" checked={{request.form.overall or true}}>Overall
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="appearance" {%if request.form.appearance: %} checked {% endif %}>Appearance
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="taste" {%if request.form.taste: %} checked {% endif %}>Taste
+                </label>  
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="palate" {%if request.form.palate: %} checked {% endif %}>Palate
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="aroma"{%if request.form.aroma: %} checked {% endif %}>Aroma
+                </label>
+            </div>
+            
+        </div>
+    </form>
+</div>
+
+{% block search_results %}
+{% endblock %}
+{% endblock %}
+

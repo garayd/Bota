@@ -1,0 +1,40 @@
+{% extends "index.html" %}
+{% block search_results %}
+</br>
+<div class="container">
+	<div class="row beer-header">
+		<div class="col-md-2 beer-picture">
+			<img style="width:113px;height:160px" src='http://healthyfastfood.biz/wp-content/uploads/2014/10/beer-bottle-silhouette.png'>
+		</div>
+		<div class="col-md-4 beer-info" >
+			<h2>{{beer['name']}}</h1>
+			<h4>Average ratings</h4>
+			<h5>Overall: {{beer.get('overall')}}</h5>
+			<h5>Appearance: {{beer.get('appearance')}}</h5>
+			<h5>Taste: {{beer.get('taste')}}</h5>
+			<h5>Palate: {{beer.get('palate')}}</h5>
+			<h5>Aroma: {{beer.get('aroma')}}</h5>
+			<h4>User Similarity: {{beer.get('similarity')}}</h4>
+		</div>
+	</div>
+	</br>
+	<div class="similar-beers col-md-3 col-md-offset-1">
+		<h3>Similar Beers:</h3>
+		<ul>
+			{% for beer in beer.get('similar_beers'): %}
+			<li><a href={{url_for('search', beer_name=term)}}>{{beer}}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="top-terms col-md-3 col-md-offset-1">
+		<h3>Top Terms:</h3>
+		<ul>
+			{% for term in beer.get('top_terms'): %}
+			<li><a href={{url_for('search', beer_name=term)}}>{{term}}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+
+	
+</div>
+{% endblock %}
